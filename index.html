@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ICT461 Course Registration - Mulungushi University">
+    <title>ICT461 Course Registration</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <header>
+        <h1>ICT461 Course Registration</h1>
+        <p class="subtitle">School of Engineering and Technology</p>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main>
+        <form id="registrationForm" action="#" method="post" novalidate>
+
+            <!-- ---------- Section 1: Personal Info ---------- -->
+            <fieldset>
+                <legend>Personal Information</legend>
+
+                <div class="form-group">
+                    <label for="studentId">Student ID <span class="required" aria-hidden="true">*</span></label>
+                    <input
+                        type="text"
+                        id="studentId"
+                        name="studentId"
+                        placeholder="e.g., 202401234"
+                        pattern="[0-9]{9}"
+                        inputmode="numeric"
+                        required
+                        aria-required="true"
+                        aria-describedby="studentIdHelp">
+                    <small id="studentIdHelp" class="hint">Must be exactly 9 digits.</small>
+                    <span class="error-message" id="studentIdError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required" aria-hidden="true">*</span></label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="e.g., Victor Mwansa"
+                        minlength="3"
+                        maxlength="60"
+                        required
+                        aria-required="true">
+                    <span class="error-message" id="fullNameError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="e.g., victor@mu.ac.zm"
+                        required
+                        aria-required="true">
+                    <span class="error-message" id="emailError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="e.g., 0971234567"
+                        pattern="[0-9]{10}"
+                        inputmode="numeric">
+                    <small class="hint">10 digits, no spaces.</small>
+                    <span class="error-message" id="phoneError" role="alert"></span>
+                </div>
+            </fieldset>
+
+            <!-- ---------- Section 2: Academic Info ---------- -->
+            <fieldset>
+                <legend>Academic Information</legend>
+
+                <div class="form-group">
+                    <label for="programme">Programme <span class="required" aria-hidden="true">*</span></label>
+                    <select id="programme" name="programme" required aria-required="true">
+                        <option value="">-- Select your programme --</option>
+                        <option value="BSc_CS">BSc Computer Science</option>
+                        <option value="BSc_IT">BSc Information Technology</option>
+                        <option value="BEng_SE">BEng Software Engineering</option>
+                        <option value="BSc_IS">BSc Information Systems</option>
+                    </select>
+                    <span class="error-message" id="programmeError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="yearOfStudy">Year of Study <span class="required" aria-hidden="true">*</span></label>
+                    <select id="yearOfStudy" name="yearOfStudy" required aria-required="true">
+                        <option value="">-- Select year --</option>
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                    </select>
+                    <span class="error-message" id="yearOfStudyError" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="semester">Semester <span class="required" aria-hidden="true">*</span></label>
+                    <select id="semester" name="semester" required aria-required="true">
+                        <option value="">-- Select semester --</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                    </select>
+                    <span class="error-message" id="semesterError" role="alert"></span>
+                </div>
+            </fieldset>
+
+            <!-- ---------- Section 3: Modules ---------- -->
+            <fieldset>
+                <legend>Module Selection</legend>
+                <p class="hint">ICT461 is compulsory. Choose ONE elective module below.</p>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="ict461" name="modules" value="ICT461" checked disabled>
+                    <label for="ict461">ICT461 – Web Systems and Technology (Compulsory)</label>
+                </div>
+
+                <div class="form-group radio-group">
+                    <p class="group-label">Elective Module <span class="required" aria-hidden="true">*</span></p>
+
+                    <div class="radio-item">
+                        <input type="radio" id="elec1" name="elective" value="ICT462" data-fee="450" required>
+                        <label for="elec1">ICT462 – Advanced Databases</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="elec2" name="elective" value="ICT463" data-fee="500">
+                        <label for="elec2">ICT463 – Network Security</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="elec3" name="elective" value="ICT464" data-fee="550">
+                        <label for="elec3">ICT464 – Mobile Application Development</label>
+                    </div>
+                    <span class="error-message" id="electiveError" role="alert"></span>
+                </div>
+            </fieldset>
+
+            <!-- ---------- Section 4: Fees (JS-populated) ---------- -->
+            <fieldset>
+                <legend>Registration Fees</legend>
+                <div id="feeSummary" class="fee-summary" aria-live="polite">
+                    <p>Select an elective module to see your total fees.</p>
+                </div>
+            </fieldset>
+
+            <!-- ---------- Section 5: Terms + Notes ---------- -->
+            <fieldset>
+                <legend>Additional Information</legend>
+
+                <div class="form-group">
+                    <label for="comments">Comments (optional)</label>
+                    <textarea id="comments" name="comments" rows="4" maxlength="300"
+                        placeholder="Any special requests or notes..."></textarea>
+                    <small class="hint">Max 300 characters.</small>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        I confirm the information provided is accurate and I agree to the
+                        <a href="#" target="_blank" rel="noopener">registration terms</a>.
+                        <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <span class="error-message" id="termsError" role="alert"></span>
+                </div>
+            </fieldset>
+
+            <!-- ---------- Actions ---------- -->
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Submit Registration</button>
+                <button type="reset" class="btn btn-secondary">Reset Form</button>
+            </div>
+
+            <!-- Live status region filled by app.js -->
+            <div id="formStatus" role="status" aria-live="polite" class="form-status"></div>
+        </form>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+        <p>&copy; 2026 Mulungushi University — ICT461 Web Systems and Technology</p>
+    </footer>
+
+    <!-- Link to your JS files at the end of body so HTML loads first -->
+    <script src="app.js"></script>
+    <script src="fees.js"></script>
+</body>
+</html>

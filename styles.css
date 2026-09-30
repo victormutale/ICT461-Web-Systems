@@ -1,0 +1,211 @@
+/* =========================================================
+   ICT461 Registration Form – styles.css
+   Mobile-first, responsive, accessible
+   ========================================================= */
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+    --primary: #0d6efd;
+    --primary-dark: #0a58ca;
+    --danger: #d32f2f;
+    --success: #2e7d32;
+    --bg: #f4f6f8;
+    --card: #ffffff;
+    --border: #d0d7de;
+    --text: #1f2933;
+    --muted: #5c6b7a;
+    --radius: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+/* ---------- Header & footer ---------- */
+header {
+    background: var(--primary);
+    color: #fff;
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+header h1 { margin: 0 0 .25rem; font-size: 1.5rem; }
+header .subtitle { margin: 0; font-size: .9rem; opacity: .9; }
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: .85rem;
+    margin-top: 2rem;
+}
+
+/* ---------- Form card ---------- */
+main { max-width: 720px; margin: 0 auto; }
+
+form {
+    background: var(--card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 0 0 1.25rem;
+}
+legend {
+    font-weight: 600;
+    padding: 0 .5rem;
+    color: var(--primary-dark);
+}
+
+/* ---------- Groups ---------- */
+.form-group { margin-bottom: 1rem; }
+
+label, .group-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: .35rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: .6rem .75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font: inherit;
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25);
+}
+
+/* ---------- Checkbox & radio ---------- */
+.checkbox-group,
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.checkbox-group label,
+.radio-item label { margin-bottom: 0; font-weight: 400; }
+
+.radio-group .radio-item { margin-bottom: .4rem; }
+
+/* ---------- Hints & errors ---------- */
+.hint {
+    display: block;
+    color: var(--muted);
+    font-size: .8rem;
+    margin-top: .25rem;
+}
+
+.required { color: var(--danger); margin-left: .15rem; }
+
+.error-message {
+    display: none;
+    color: var(--danger);
+    font-size: .85rem;
+    margin-top: .25rem;
+}
+.form-group.invalid .error-message { display: block; }
+.form-group.invalid input,
+.form-group.invalid select,
+.form-group.invalid textarea { border-color: var(--danger); }
+
+/* ---------- Fee summary ---------- */
+.fee-summary {
+    background: #eef6ff;
+    border-left: 4px solid var(--primary);
+    padding: .75rem 1rem;
+    border-radius: var(--radius);
+    font-size: .95rem;
+}
+.fee-summary strong { color: var(--primary-dark); }
+
+/* ---------- Buttons ---------- */
+.form-actions {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+.btn {
+    flex: 1 1 180px;
+    padding: .75rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s, transform .05s;
+}
+.btn:focus-visible { outline: 3px solid #ffd54f; outline-offset: 2px; }
+.btn:active { transform: translateY(1px); }
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary { background: #e4e8ee; color: var(--text); }
+.btn-secondary:hover { background: #d3d9e2; }
+
+/* ---------- Status ---------- */
+.form-status {
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    display: none;
+}
+.form-status.success {
+    display: block;
+    background: #e6f4ea;
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+.form-status.error {
+    display: block;
+    background: #fdecea;
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+/* ---------- Responsive: 2 columns on tablet+ ---------- */
+@media (min-width: 600px) {
+    fieldset {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .75rem 1rem;
+    }
+    fieldset legend,
+    fieldset .form-group:has(textarea),
+    fieldset .form-group.checkbox-group,
+    fieldset .radio-group,
+    fieldset > p,
+    fieldset .fee-summary {
+        grid-column: 1 / -1;
+    }
+    header h1 { font-size: 1.8rem; }
+}
